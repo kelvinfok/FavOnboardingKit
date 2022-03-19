@@ -1,6 +1,19 @@
-public struct FavOnboardingKit {
-    public private(set) var text = "Hello, World!"
 
-    public init() {
-    }
+import UIKit
+
+public class FavOnboardingKit {
+  
+  
+  public init() {
+    
+  }
+  
+  public func launchOnboarding(rootVC: UIViewController) {
+    
+  }
+  
+  public func dismissOnboarding() {
+    
+  }
+  
 }
