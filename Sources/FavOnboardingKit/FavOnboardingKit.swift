@@ -3,15 +3,19 @@ import UIKit
 
 public class FavOnboardingKit {
   
-  private var onboardingViewController: OnboardingViewController = {
-    let controller = OnboardingViewController()
+  private let slides: [Slide]
+  private let tintColor: UIColor
+  
+  private lazy var onboardingViewController: OnboardingViewController = {
+    let controller = OnboardingViewController(slides: slides, tintColor: tintColor)
     controller.modalTransitionStyle = .crossDissolve
     controller.modalPresentationStyle = .fullScreen
     return controller
   }()
   
-  public init() {
-    
+  public init(slides: [Slide], tintColor: UIColor) {
+    self.slides = slides
+    self.tintColor = tintColor
   }
   
   public func launchOnboarding(rootVC: UIViewController) {
