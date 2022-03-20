@@ -18,7 +18,13 @@ class OnboardingViewController: UIViewController {
   }()
   
   private lazy var buttonContainerView: ButtonContainerView = {
-    let view = ButtonContainerView()
+    let view = ButtonContainerView(tintColor: tintColor)
+    view.nextButtonDidTap = {
+      print("next button tapped!!!")
+    }
+    view.getStartedButtonDidTap = {
+      print("get started button tapped!!!")
+    }
     return view
   }()
   
@@ -44,7 +50,7 @@ class OnboardingViewController: UIViewController {
   }
   
   private func setupViews() {
-    view.backgroundColor = .red
+    view.backgroundColor = .white
 
     view.addSubview(stackView)
     
