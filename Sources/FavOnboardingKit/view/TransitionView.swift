@@ -52,6 +52,7 @@ class TransitionView: UIView {
   
   private let slides: [Slide]
   private let viewTintColor: UIColor
+  private var index: Int = -1
   
   init(slides: [Slide], tintColor: UIColor) {
     self.slides = slides
@@ -78,9 +79,34 @@ class TransitionView: UIView {
     guard timer == nil else { return }
     timer = DispatchSource.makeTimerSource()
     timer?.schedule(deadline: .now(), repeating: .seconds(3), leeway: .seconds(1))
-    timer?.setEventHandler(handler: {
-      print("show next")
+    timer?.setEventHandler(handler: { [weak self] in
+      DispatchQueue.main.async {
+        self?.showNext()
+      }
     })
+  }
+  
+  private func showNext() {
+    
+    let nextImage: UIImage
+    
+    if slides.indices.contains(index + 1) {
+      nextImage = slides[index + 1].image
+      index += 1
+    } else {
+      nextImage = slides[0].image
+      index = 0
+    }
+    
+    UIView.transition(
+      with: imageView,
+      duration: 0.5,
+      options: .transitionCrossDissolve,
+      animations: {
+        self.imageView.image = nextImage
+      }, completion: nil)
+
+    
   }
   
   private func layout() {
