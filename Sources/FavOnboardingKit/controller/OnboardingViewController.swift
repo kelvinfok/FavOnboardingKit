@@ -49,6 +49,11 @@ class OnboardingViewController: UIViewController {
     setupViews()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    transitionView.start()
+  }
+  
   private func setupViews() {
     view.backgroundColor = .white
 
