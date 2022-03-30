@@ -15,7 +15,6 @@ class TransitionView: UIView {
     let view = UIImageView()
     view.contentMode = .scaleAspectFill
     view.clipsToBounds = true
-    view.backgroundColor = .yellow
     return view
   }()
   
@@ -89,12 +88,15 @@ class TransitionView: UIView {
   private func showNext() {
     
     let nextImage: UIImage
+    let nextTitle: String
     
     if slides.indices.contains(index + 1) {
       nextImage = slides[index + 1].image
+      nextTitle = slides[index + 1].title
       index += 1
     } else {
       nextImage = slides[0].image
+      nextTitle = slides[0].title
       index = 0
     }
     
@@ -105,7 +107,8 @@ class TransitionView: UIView {
       animations: {
         self.imageView.image = nextImage
       }, completion: nil)
-
+    
+    titleView.setTitle(text: nextTitle)
     
   }
   
