@@ -21,7 +21,7 @@ class TransitionView: UIView {
   private lazy var barViews: [AnimatedBarView] = {
     var views: [AnimatedBarView] = []
     slides.forEach { _ in
-      views.append(AnimatedBarView())
+      views.append(AnimatedBarView(barColor: viewTintColor))
     }
     return views
   }()
@@ -131,8 +131,6 @@ class TransitionView: UIView {
     imageView.snp.makeConstraints { make in
       make.height.equalTo(stackView.snp.height).multipliedBy(0.8)
     }
-    
-    backgroundColor = .blue
   }
   
   
