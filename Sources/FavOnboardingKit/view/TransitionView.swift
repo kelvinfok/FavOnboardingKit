@@ -89,14 +89,17 @@ class TransitionView: UIView {
     
     let nextImage: UIImage
     let nextTitle: String
+    let nextBarView: AnimatedBarView
     
     if slides.indices.contains(index + 1) {
       nextImage = slides[index + 1].image
       nextTitle = slides[index + 1].title
+      nextBarView = barViews[index + 1]
       index += 1
     } else {
       nextImage = slides[0].image
       nextTitle = slides[0].title
+      nextBarView = barViews[0]
       index = 0
     }
     
@@ -109,7 +112,7 @@ class TransitionView: UIView {
       }, completion: nil)
     
     titleView.setTitle(text: nextTitle)
-    
+    nextBarView.startAnimating()
   }
   
   private func layout() {
