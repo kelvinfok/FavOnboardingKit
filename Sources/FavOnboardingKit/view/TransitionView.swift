@@ -97,6 +97,7 @@ class TransitionView: UIView {
       nextBarView = barViews[index + 1]
       index += 1
     } else {
+      barViews.forEach({ $0.reset() })
       nextImage = slides[0].image
       nextTitle = slides[0].title
       nextBarView = barViews[0]
@@ -136,5 +137,20 @@ class TransitionView: UIView {
     }
   }
   
+  func handleTap(direction: Direction) {
+    switch direction {
+    case .left:
+      barViews[index].reset()
+      if barViews.indices.contains(index - 1) {
+        barViews[index - 1].reset()
+      }
+      index -= 2
+    case .right:
+      barViews[index].complete()
+    }
+    timer?.cancel()
+    timer = nil
+    start()
+  }
   
 }
