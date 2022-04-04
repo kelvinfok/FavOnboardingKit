@@ -10,6 +10,7 @@ public class FavOnboardingKit {
   
   private let slides: [Slide]
   private let tintColor: UIColor
+  private var rootVC: UIViewController?
   
   public weak var delegate: FavOnboardingKitDelegate?
   
@@ -32,11 +33,15 @@ public class FavOnboardingKit {
   }
   
   public func launchOnboarding(rootVC: UIViewController) {
+    self.rootVC = rootVC
     rootVC.present(onboardingViewController, animated: true, completion: nil)
   }
   
   public func dismissOnboarding() {
-    
+    onboardingViewController.stopAnimation()
+    if rootVC?.presentedViewController == onboardingViewController {
+      onboardingViewController.dismiss(animated: true)
+    }
   }
   
 }
