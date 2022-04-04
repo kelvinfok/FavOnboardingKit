@@ -53,6 +53,10 @@ class TransitionView: UIView {
   private let viewTintColor: UIColor
   private var index: Int = -1
   
+  var slideIndex: Int {
+    return index
+  }
+  
   init(slides: [Slide], tintColor: UIColor) {
     self.slides = slides
     self.viewTintColor = tintColor
