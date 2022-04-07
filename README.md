@@ -2,6 +2,8 @@
 
 FavOnboardingKit provides an onboarding flow that is simple and easy to implement.
 
+![video-preview](https://raw.githubusercontent.com/kelvinfok/FavOnboardingKit/main/video-preview.gif)
+
 ## Contents
 
 - [Requirements](#requirements)
