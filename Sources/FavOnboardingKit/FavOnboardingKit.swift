@@ -10,13 +10,18 @@ public class FavOnboardingKit {
   
   private let themeFont: UIFont
   private let slides: [Slide]
+  private let slideDurationInSeconds: Int
   private let tintColor: UIColor
   private var rootVC: UIViewController?
   
   public weak var delegate: FavOnboardingKitDelegate?
   
   private lazy var onboardingViewController: OnboardingViewController = {
-    let controller = OnboardingViewController(slides: slides, tintColor: tintColor, themeFont: themeFont)
+    let controller = OnboardingViewController(
+      slides: slides,
+      tintColor: tintColor,
+      themeFont: themeFont,
+      slideDurationInSeconds: slideDurationInSeconds)
     controller.modalTransitionStyle = .crossDissolve
     controller.modalPresentationStyle = .fullScreen
     controller.nextButtonDidTap = { [weak self] index in
@@ -28,10 +33,14 @@ public class FavOnboardingKit {
     return controller
   }()
   
-  public init(slides: [Slide],
-              tintColor: UIColor,
-              themeFont: UIFont = UIFont(name: "ArialRoundedMTBold", size: 28) ?? UIFont.systemFont(ofSize: 28, weight: .bold)) {
+  public init(
+    slides: [Slide],
+    slideDurationInSeconds: Int = 3,
+    tintColor: UIColor,
+    themeFont: UIFont = UIFont(name: "ArialRoundedMTBold", size: 28) ?? UIFont.systemFont(ofSize: 28, weight: .bold)
+  ) {
     self.slides = slides
+    self.slideDurationInSeconds = slideDurationInSeconds
     self.tintColor = tintColor
     self.themeFont = themeFont
   }

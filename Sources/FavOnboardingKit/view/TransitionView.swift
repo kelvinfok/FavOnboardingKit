@@ -50,6 +50,7 @@ class TransitionView: UIView {
   }()
   
   private let slides: [Slide]
+  private let slideDurationInSeconds: Int
   private let viewTintColor: UIColor
   private let themeFont: UIFont
   private var index: Int = -1
@@ -58,8 +59,14 @@ class TransitionView: UIView {
     return index
   }
   
-  init(slides: [Slide], tintColor: UIColor, themeFont: UIFont) {
+  init(
+    slides: [Slide],
+    tintColor: UIColor,
+    themeFont: UIFont,
+    slideDurationInSeconds: Int
+  ) {
     self.slides = slides
+    self.slideDurationInSeconds = slideDurationInSeconds
     self.viewTintColor = tintColor
     self.themeFont = themeFont
     super.init(frame: .zero)
@@ -83,7 +90,7 @@ class TransitionView: UIView {
   private func buildTimerIfNeeded() {
     guard timer == nil else { return }
     timer = DispatchSource.makeTimerSource()
-    timer?.schedule(deadline: .now(), repeating: .seconds(3), leeway: .seconds(1))
+    timer?.schedule(deadline: .now(), repeating: .seconds(slideDurationInSeconds), leeway: .seconds(1))
     timer?.setEventHandler(handler: { [weak self] in
       DispatchQueue.main.async {
         self?.showNext()
