@@ -34,9 +34,14 @@ class AnimatedBarView: UIView {
   private var subscribers = Set<AnyCancellable>()
   private var animator: UIViewPropertyAnimator!
   private let barColor: UIColor
+  private let durationInSeconds: Int
   
-  init(barColor: UIColor) {
+  init(
+    barColor: UIColor,
+    durationInSeconds: Int
+  ) {
     self.barColor = barColor
+    self.durationInSeconds = durationInSeconds
     super.init(frame: .zero)
     setupAnimator()
     layout()
@@ -49,7 +54,7 @@ class AnimatedBarView: UIView {
   
   private func setupAnimator() {
     animator = UIViewPropertyAnimator(
-      duration: 3.0,
+      duration: Double(durationInSeconds),
       curve: .easeInOut, animations: {
         self.foregroundBarView.transform = .identity
       })
